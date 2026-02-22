@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { chat, type ChatMessage } from "@/lib/sarvam";
 import { SYSTEM_PROMPT } from "@/lib/knowledge-base";
+import { saveChat } from "@/lib/cosmos";
 
 export async function POST(req: NextRequest) {
   try {
@@ -31,6 +32,17 @@ export async function POST(req: NextRequest) {
 
     const response = await chat(fullMessages);
     const reply = response.choices[0]?.message?.content || "";
+
+    // Log conversation to Cosmos DB (non-blocking)
+    if (process.env.COSMOS_CONNECTION_STRING) {
+      const lastUserMsg = messages.filter((m: ChatMessage) => m.role === "user").pop();
+      saveChat({
+        sessionId: body.sessionId || "anonymous",
+        language: language || "en-IN",
+        userMessage: lastUserMsg?.content || "",
+        assistantReply: reply,
+      }).catch((err) => console.error("Chat log error:", err));
+    }
 
     return NextResponse.json({
       reply,

@@ -9,6 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@azure/cosmos": "^4.9.1",
+    "applicationinsights": "^3.13.0",
     "framer-motion": "^12.34.3",
     "next": "16.1.6",
     "next-intl": "^4.8.3",

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { saveContact } from "@/lib/cosmos";
 
 export async function POST(req: NextRequest) {
   try {
@@ -20,29 +21,23 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Build a readable message from all fields
-    const fields = Object.entries(rest)
-      .filter(([, v]) => v)
-      .map(([k, v]) => `${k}: ${v}`)
-      .join("\n");
+    // Remove empty values
+    const fields: Record<string, string> = {};
+    for (const [k, v] of Object.entries(rest)) {
+      if (v) fields[k] = String(v);
+    }
 
-    const submission = {
-      timestamp: new Date().toISOString(),
-      audience,
-      name,
-      email,
-      fields,
-    };
+    // Save to Azure Cosmos DB
+    if (process.env.COSMOS_CONNECTION_STRING) {
+      await saveContact({ name, email, audience, fields });
+    }
 
-    // Log to server console for now — can be replaced with:
-    // - Email service (SendGrid, Resend, AWS SES)
-    // - Database (Azure Cosmos, Supabase)
-    // - Google Sheets API
-    // - Webhook (Slack, Discord, Zapier)
-    console.log("📩 New contact form submission:", JSON.stringify(submission, null, 2));
+    // Also log for local dev
+    console.log("New contact:", { audience, name, email });
 
     return NextResponse.json({ success: true });
-  } catch {
+  } catch (err) {
+    console.error("Contact form error:", err);
     return NextResponse.json(
       { error: "Failed to process submission" },
       { status: 500 }

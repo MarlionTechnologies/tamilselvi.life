@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { AiOrbLoader } from "@/components/assistant/AiOrbLoader";
+import { PageTracker } from "@/components/analytics/PageTracker";
 import { JsonLd, personSchema, websiteSchema } from "@/components/seo/JsonLd";
 
 const playfair = Playfair_Display({
@@ -75,6 +76,7 @@ export default function RootLayout({
         </div>
         <Footer />
         <AiOrbLoader />
+        <PageTracker />
       </body>
     </html>
   );
