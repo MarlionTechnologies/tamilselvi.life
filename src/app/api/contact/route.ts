@@ -1,8 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { saveContact } from "@/lib/cosmos";
+import { rateLimit } from "@/lib/rate-limit";
 
 export async function POST(req: NextRequest) {
   try {
+    const forwarded = req.headers.get("x-forwarded-for");
+    const ip = forwarded?.split(",")[0]?.trim() || "anonymous";
+    if (!rateLimit(`contact:${ip}`, { limit: 5, windowMs: 60_000 })) {
+      return Response.json({ error: "Too many submissions. Please try again later." }, { status: 429 });
+    }
+
     const body = await req.json();
     const { name, email, audience, ...rest } = body;
 
@@ -33,7 +40,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Also log for local dev
-    console.log("New contact:", { audience, name, email });
+    console.log("New contact submission received:", { audience, timestamp: new Date().toISOString() });
 
     return NextResponse.json({ success: true });
   } catch (err) {

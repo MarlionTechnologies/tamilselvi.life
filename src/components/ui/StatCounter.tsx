@@ -36,7 +36,6 @@ export function StatCounter({ value, suffix = "", label, duration = 2000 }: Stat
     const step = (currentTime: number) => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      // Ease out cubic
       const eased = 1 - Math.pow(1 - progress, 3);
       setCount(Math.floor(eased * value));
 
@@ -50,11 +49,11 @@ export function StatCounter({ value, suffix = "", label, duration = 2000 }: Stat
 
   return (
     <div ref={ref} className="text-center">
-      <div className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-depth">
+      <div className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-depth leading-none">
         {count.toLocaleString()}
         <span className="text-heart">{suffix}</span>
       </div>
-      <p className="mt-2 text-sm sm:text-base text-text-secondary font-medium">
+      <p className="mt-2 text-xs sm:text-sm text-text-secondary font-medium">
         {label}
       </p>
     </div>

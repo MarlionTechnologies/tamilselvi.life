@@ -2,9 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 import { chat, type ChatMessage } from "@/lib/sarvam";
 import { SYSTEM_PROMPT } from "@/lib/knowledge-base";
 import { saveChat } from "@/lib/cosmos";
+import { rateLimit } from "@/lib/rate-limit";
 
 export async function POST(req: NextRequest) {
   try {
+    const forwarded = req.headers.get("x-forwarded-for");
+    const ip = forwarded?.split(",")[0]?.trim() || "anonymous";
+    if (!rateLimit(`assistant:${ip}`, { limit: 15, windowMs: 60_000 })) {
+      return Response.json({ error: "Too many requests. Please try again shortly." }, { status: 429 });
+    }
+
     const body = await req.json();
     const { messages, language } = body as {
       messages: ChatMessage[];
@@ -18,6 +25,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Cap conversation length
+    const recentMessages = Array.isArray(messages) ? messages.slice(-20) : [];
+
     // Build system prompt with language instruction
     let systemContent = SYSTEM_PROMPT;
     if (language && language !== "en-IN") {
@@ -27,7 +37,7 @@ export async function POST(req: NextRequest) {
 
     const fullMessages: ChatMessage[] = [
       { role: "system", content: systemContent },
-      ...messages,
+      ...recentMessages,
     ];
 
     const response = await chat(fullMessages);
@@ -35,7 +45,7 @@ export async function POST(req: NextRequest) {
 
     // Log conversation to Cosmos DB (non-blocking)
     if (process.env.COSMOS_CONNECTION_STRING) {
-      const lastUserMsg = messages.filter((m: ChatMessage) => m.role === "user").pop();
+      const lastUserMsg = recentMessages.filter((m: ChatMessage) => m.role === "user").pop();
       saveChat({
         sessionId: body.sessionId || "anonymous",
         language: language || "en-IN",

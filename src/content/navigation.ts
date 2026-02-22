@@ -9,20 +9,13 @@ export const mainNav: NavItem[] = [
     label: "Impact",
     href: "/impact",
     children: [
-      { label: "Schools We Have Visited", href: "/impact/schools" },
-      { label: "Stories of Change", href: "/impact/children" },
-      { label: "Community Outreach", href: "/impact/community" },
+      { label: "Schools & Institutions", href: "/impact" },
+      { label: "Photo Gallery", href: "/gallery" },
     ],
   },
   {
     label: "Our Work",
     href: "/work",
-    children: [
-      { label: "VR Therapy for Autism", href: "/work/vr-therapy" },
-      { label: "Project Gallery", href: "/work/projects" },
-      { label: "The VR Lab", href: "/work/lab" },
-      { label: "Publications", href: "/work/publications" },
-    ],
   },
   {
     label: "The Vision",
@@ -31,16 +24,6 @@ export const mainNav: NavItem[] = [
   {
     label: "About",
     href: "/about",
-    children: [
-      { label: "The Journey", href: "/about" },
-      { label: "Milestones", href: "/about/milestones" },
-      { label: "Collaborations", href: "/about/collaborations" },
-      { label: "Students", href: "/about/students" },
-    ],
-  },
-  {
-    label: "Gallery",
-    href: "/gallery",
   },
 ];
 
@@ -48,7 +31,7 @@ export const doorways = [
   {
     heading: "I want to understand the technology",
     description: "Explore the VR therapy systems, architecture, and research behind our work.",
-    href: "/work/vr-therapy",
+    href: "/work#vr-therapy",
     audience: "technocrat",
   },
   {
@@ -72,7 +55,7 @@ export const doorways = [
   {
     heading: "I want to collaborate on research",
     description: "Publications, methodologies, and open collaboration opportunities.",
-    href: "/work/publications",
+    href: "/work#publications",
     audience: "researcher",
   },
   {

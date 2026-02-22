@@ -7,10 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
     "",
     "/impact",
-    "/work/vr-therapy",
-    "/work/projects",
-    "/work/lab",
-    "/work/publications",
+    "/work",
     "/ecosystem",
     "/about",
     "/connect",
@@ -18,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/connect/collaborate",
     "/connect/join",
     "/connect/support",
+    "/connect/sponsor",
     "/gallery",
   ];
 
@@ -27,7 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return allPages.map((path) => ({
     url: `${baseUrl}${path}`,
-    lastModified: new Date(),
+    lastModified: new Date("2026-02-23"),
     changeFrequency: path === "" ? "weekly" : "monthly",
     priority: path === "" ? 1 : path.startsWith("/ecosystem/") ? 0.6 : 0.8,
   }));

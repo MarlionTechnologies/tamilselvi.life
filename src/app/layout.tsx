@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
@@ -21,13 +21,20 @@ const inter = Inter({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  themeColor: "#2E2723",
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://tamilselvi.life"),
   title: {
     default: "Dr. D. Tamilselvi — Assistive Technology for Every Child",
     template: "%s | Dr. D. Tamilselvi",
   },
   description:
-    "Professor of IT at TCE Madurai, pioneering VR/AR assistive technology for children with autism. 23+ years of building bridges between technology and therapy.",
+    "Professor of IT at TCE Madurai, pioneering VR/AR assistive technology for children with autism. 23+ years building bridges between technology and therapy.",
   keywords: [
     "assistive technology",
     "autism therapy",
@@ -38,6 +45,9 @@ export const metadata: Metadata = {
     "special education technology",
   ],
   authors: [{ name: "Dr. D. Tamilselvi" }],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "en_IN",
@@ -46,6 +56,12 @@ export const metadata: Metadata = {
     title: "Dr. D. Tamilselvi — Assistive Technology for Every Child",
     description:
       "Pioneering VR/AR assistive technology for children with autism. 23+ years of dedication.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dr. D. Tamilselvi — Assistive Technology for Every Child",
+    description:
+      "Pioneering VR/AR assistive technology for children with autism at TCE Madurai.",
   },
 };
 

@@ -23,6 +23,19 @@ const pathways = [
     ),
   },
   {
+    title: "I want to sponsor a product",
+    audience: "For companies, foundations & individuals",
+    description:
+      "Choose a product from our assistive technology ecosystem, pick a sponsorship tier, and see your impact. Every sponsor gets something back.",
+    href: "/connect/sponsor",
+    color: "var(--heart)",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-7 h-7">
+        <path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z" />
+      </svg>
+    ),
+  },
+  {
     title: "I want to collaborate on research",
     audience: "For researchers, academics & educators",
     description:
@@ -70,9 +83,6 @@ export default function ConnectPage() {
       <section className="pt-32 pb-16 sm:pt-40 sm:pb-24 bg-gradient-to-b from-warmth-light to-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <ScrollReveal>
-            <p className="text-sm uppercase tracking-widest text-text-muted font-medium mb-4">
-              The Invitation
-            </p>
             <h1 className="text-text-primary mb-6">
               Now it is your turn.
             </h1>
@@ -133,10 +143,10 @@ export default function ConnectPage() {
                 Or reach out directly:
               </p>
               <a
-                href="mailto:dts@tce.edu"
+                href="mailto:dtamilselvi@tce.edu"
                 className="text-depth hover:text-depth-dark font-medium transition-colors"
               >
-                dts@tce.edu
+                dtamilselvi@tce.edu
               </a>
               <p className="text-sm text-text-muted mt-4">
                 Department of IT, Thiagarajar College of Engineering

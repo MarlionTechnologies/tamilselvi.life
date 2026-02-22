@@ -40,6 +40,7 @@ export const schools: School[] = [
     lng: 79.858,
     description:
       "VR therapy demonstration and assessment sessions at this Auroville-based special school.",
+    image: "/images/schools/deepam-school.jpg",
   },
   {
     name: "Rakshana Child Care Center",
@@ -49,15 +50,17 @@ export const schools: School[] = [
     lng: 78.12,
     description:
       "VR-based therapy for children with autism and other developmental disabilities.",
+    image: "/images/schools/sathya-school-2.jpg",
   },
   {
-    name: "Shaksham Deepmahi",
+    name: "Shaksham Deeemahi",
     location: "Madurai",
     state: "Tamil Nadu",
     lat: 9.93,
     lng: 78.13,
     description:
       "Assistive technology demonstrations and engagement with the local special needs community.",
+    image: "/images/schools/shaksham-school.jpg",
   },
   {
     name: "Shristi Village",
@@ -67,6 +70,7 @@ export const schools: School[] = [
     lng: 78.2,
     description:
       "Specialized residential facility for children with severe autism. Immersive VR therapy trials.",
+    image: "/images/schools/jipmer-2.jpg",
   },
   {
     name: "Thai Special School",
@@ -76,6 +80,7 @@ export const schools: School[] = [
     lng: 78.135,
     description:
       "Regional outreach bringing VR therapy demonstrations to Salem's special education students.",
+    image: "/images/workshops/govt-school-demo.jpg",
   },
   {
     name: "JIPMER",
@@ -96,6 +101,7 @@ export const schools: School[] = [
     lng: 80.271,
     description:
       "VR rehabilitation research presented at the National Institute for Empowerment of Persons with Multiple Disabilities.",
+    image: "/images/awards/alagappa-conference.jpg",
     highlight: true,
   },
   {
@@ -115,43 +121,50 @@ export interface Recognition {
   issuer: string;
   year: string;
   description: string;
+  image?: string;
 }
 
 export const recognitions: Recognition[] = [
   {
-    title: "Best Assistive Tech Initiative",
+    title: "Best Assistive Tech Academic Initiative",
     issuer: "ATF Awards",
-    year: "2025",
+    year: "2024",
     description: "Backed by Microsoft, Accenture & Shell",
+    image: "/images/awards/atf-finalist-2024.jpg",
   },
   {
     title: "Top 10 Innovation Finalists",
     issuer: "IIT Madras KRIA",
     year: "2024",
     description: "India-level innovation recognition",
+    image: "/images/awards/kria-innovation-2024.jpg",
   },
   {
     title: "TXR Solutions Incubated",
     issuer: "IIT Madras GDC",
     year: "2024",
     description: "18th I-NCUBATE Cohort",
+    image: "/images/awards/ceremony-2023.jpg",
   },
   {
     title: "Product Innovation Showcase",
     issuer: "IIT Madras EMPOWER",
     year: "2023",
     description: "3 VR projects demonstrated",
+    image: "/images/awards/conference-chair.jpg",
   },
   {
     title: "Service to Humanity",
-    issuer: "Community Impact",
+    issuer: "Service Recognition",
     year: "2023",
     description: "Recognized for social impact through technology",
+    image: "/images/awards/service-to-humanity-medal.jpg",
   },
   {
     title: "International VR Collaboration",
     issuer: "Innovate UK / Kerckhoffs",
     year: "2023",
     description: "UK technology partnership",
+    image: "/images/awards/kerckhoffs-certificate-2023.jpg",
   },
 ];

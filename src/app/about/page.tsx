@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
 import { milestones } from "@/content/timeline";
@@ -21,7 +22,7 @@ const collaborations = [
   {
     name: "Kewaunee Scientific",
     type: "MoU Partner",
-    description: "Lab infrastructure and equipment partnership for VR research facilities.",
+    description: "VR development internships, workshops (2017 & 2019), and joint Springer IHSI 2020 publication.",
   },
   {
     name: "Kerckhoffs / TeenyWeeny VR",
@@ -29,14 +30,14 @@ const collaborations = [
     description: "UK-based VR development partnership through Innovate UK programme.",
   },
   {
-    name: "Marlion (Merlion)",
+    name: "Marlion",
     type: "Synergic Partner",
     description: "Assistive technology startup collaboration for product development.",
   },
   {
     name: "Ashland University",
     type: "Academic Exchange",
-    description: "International academic collaboration for research and knowledge exchange.",
+    description: "Research collaboration with Dr. Sathyaprakash Ramdoss on autism brain research, social communication, and assessment strategies (CARS, ABA). 2 joint publications.",
   },
   {
     name: "IIT Madras",
@@ -47,6 +48,11 @@ const collaborations = [
     name: "Zoho Corporation",
     type: "Industry Visit",
     description: "CEO Sridhar Vembu visited TCE campus to see VR assistive technology demonstrations.",
+  },
+  {
+    name: "X-Centric (USA)",
+    type: "Industry Sponsor",
+    description: "US-based gaming company that provided gaming zone equipment for physiotherapy for children with autism.",
   },
 ];
 
@@ -59,9 +65,6 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <ScrollReveal>
               <div>
-                <p className="text-sm uppercase tracking-widest text-text-muted font-medium mb-4">
-                  Not a biography. A letter of introduction.
-                </p>
                 <h1 className="text-text-primary mb-6">
                   Dr. D. Tamilselvi
                 </h1>
@@ -69,7 +72,7 @@ export default function AboutPage() {
                   <p>
                     Professor of Information Technology at Thiagarajar College of
                     Engineering, Madurai. PhD in Robotics from Anna University.
-                    23 years of teaching. 10 years of building assistive
+                    23+ years of teaching. 10 years of building assistive
                     technology that reaches real children.
                   </p>
                   <p>
@@ -92,15 +95,22 @@ export default function AboutPage() {
             <ScrollReveal delay={200}>
               <div className="flex justify-center">
                 <div className="relative">
+                  <div className="w-72 h-96 sm:w-80 sm:h-[28rem] rounded-2xl overflow-hidden bg-warmth shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
+                    <Image
+                      src="/images/profile/dr-tamilselvi-2.jpg"
+                      alt="Dr. D. Tamilselvi — Professor of IT, TCE Madurai"
+                      width={320}
+                      height={448}
+                      className="w-full h-full object-cover img-warm"
+                      priority
+                    />
+                  </div>
                   <div
-                    className="w-72 h-96 sm:w-80 sm:h-[28rem] rounded-2xl bg-cover bg-center bg-warmth img-warm shadow-[0_8px_32px_rgba(0,0,0,0.12)]"
-                    style={{
-                      backgroundImage: "url(/images/profile/dr-tamilselvi.jpg)",
-                    }}
-                  />
-                  <div className="absolute -bottom-4 -right-4 bg-depth text-white px-5 py-3 rounded-xl shadow-lg">
-                    <p className="text-sm font-medium">23+ years</p>
-                    <p className="text-xs text-sky-light/70">of dedication</p>
+                    className="absolute -bottom-4 -right-4 px-5 py-3 rounded-xl shadow-lg"
+                    style={{ background: "linear-gradient(135deg, #2E2723 0%, #252120 100%)" }}
+                  >
+                    <p className="text-sm font-medium" style={{ color: "#F5F0EB" }}>23+ years</p>
+                    <p className="text-xs" style={{ color: "#9A8E82" }}>of dedication</p>
                   </div>
                 </div>
               </div>
@@ -114,9 +124,6 @@ export default function AboutPage() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="text-center mb-16">
-              <p className="text-sm uppercase tracking-widest text-text-muted font-medium mb-4">
-                The Journey
-              </p>
               <h2 className="text-text-primary">Milestones</h2>
             </div>
           </ScrollReveal>
@@ -140,7 +147,7 @@ export default function AboutPage() {
                       </div>
                     </div>
                     {/* Content */}
-                    <div className="pb-2">
+                    <div className="pb-2 flex-1">
                       <p className="text-xs text-depth font-semibold uppercase tracking-wider mb-1">
                         {m.year}
                       </p>
@@ -150,6 +157,17 @@ export default function AboutPage() {
                       <p className="text-sm text-text-secondary leading-relaxed">
                         {m.description}
                       </p>
+                      {m.image && (
+                        <div className="relative aspect-video mt-3 rounded-lg overflow-hidden max-w-sm">
+                          <Image
+                            src={m.image}
+                            alt={m.title}
+                            fill
+                            className="object-cover img-warm"
+                            sizes="(max-width: 768px) 80vw, 380px"
+                          />
+                        </div>
+                      )}
                     </div>
                   </div>
                 </ScrollReveal>
@@ -164,9 +182,6 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="text-center mb-12">
-              <p className="text-sm uppercase tracking-widest text-text-muted font-medium mb-4">
-                Partnerships
-              </p>
               <h2 className="text-text-primary">Collaborations</h2>
             </div>
           </ScrollReveal>
@@ -188,20 +203,26 @@ export default function AboutPage() {
               </ScrollReveal>
             ))}
           </div>
+
+          <div className="text-center mt-8">
+            <Button href="/work#lab" variant="secondary" size="md">
+              Visit the VR Lab
+            </Button>
+          </div>
         </div>
       </section>
 
       {/* Students */}
-      <section className="py-20 sm:py-28 bg-depth text-white">
+      <section
+        className="py-20 sm:py-28"
+        style={{ background: "linear-gradient(180deg, #2E2723 0%, #252120 100%)" }}
+      >
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <ScrollReveal>
-            <p className="text-xs uppercase tracking-widest text-sky-light/60 mb-4">
-              Mentorship
-            </p>
-            <h2 className="text-white mb-6">
+            <h2 className="mb-6" style={{ color: "#F5F0EB" }}>
               80+ students have been part of this journey.
             </h2>
-            <p className="text-sky-light/80 leading-relaxed mx-auto mb-8">
+            <p className="leading-relaxed mx-auto mb-8" style={{ color: "#B5A99D" }}>
               From undergraduate projects to research internships, students at
               TCE learn by building technology that matters. The Assistive
               Technology Club, founded in 2022, brings them together to work on
@@ -214,14 +235,30 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Stakeholder CTAs */}
+      <section className="py-16 bg-warmth-light">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <ScrollReveal>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Button href="/connect/collaborate" variant="primary" size="lg">
+                Collaborate With Us
+              </Button>
+              <Button href="/connect/partner" variant="secondary" size="lg">
+                Support This Work
+              </Button>
+              <Button href="/work#projects" variant="secondary" size="lg">
+                Explore Our Projects
+              </Button>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
       {/* Gratitude — TCE */}
       <section className="py-20 sm:py-28 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="text-center mb-12">
-              <p className="text-sm uppercase tracking-widest text-text-muted font-medium mb-4">
-                Gratitude
-              </p>
               <h2 className="text-text-primary">
                 None of this would be possible alone.
               </h2>

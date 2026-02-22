@@ -3,6 +3,7 @@ export interface Milestone {
   title: string;
   description: string;
   type: "career" | "research" | "award" | "impact" | "vision";
+  image?: string;
 }
 
 export const milestones: Milestone[] = [
@@ -12,6 +13,7 @@ export const milestones: Milestone[] = [
     description:
       "Began her academic career at Thiagarajar College of Engineering as a Lecturer in Information Technology.",
     type: "career",
+    image: "/images/profile/dr-tamilselvi.jpg",
   },
   {
     year: "2008",
@@ -40,6 +42,7 @@ export const milestones: Milestone[] = [
     description:
       "Walked into her first special school classroom. The experience changed everything — technology had to meet children where they are.",
     type: "impact",
+    image: "/images/schools/spark-school.jpg",
   },
   {
     year: "2018",
@@ -47,6 +50,7 @@ export const milestones: Milestone[] = [
     description:
       "Built a dedicated Virtual Reality laboratory at TCE with HTC Vive Pro equipment for autism rehabilitation research.",
     type: "research",
+    image: "/images/hero/vr-lab-setup.jpg",
   },
   {
     year: "2018",
@@ -54,6 +58,7 @@ export const milestones: Milestone[] = [
     description:
       "Received Rs. 33.8 Lakh grant from the Department of Science & Technology for VR-based autism rehabilitation.",
     type: "award",
+    image: "/images/lab/reporter-demo.jpg",
   },
   {
     year: "2020",
@@ -75,6 +80,7 @@ export const milestones: Milestone[] = [
     description:
       "Recognized for sustained community impact through assistive technology outreach.",
     type: "award",
+    image: "/images/awards/service-to-humanity-medal.jpg",
   },
   {
     year: "2023",
@@ -82,6 +88,7 @@ export const milestones: Milestone[] = [
     description:
       "Showcased 3 VR rehabilitation projects at IIT Madras EMPOWER conference, demonstrating real-world therapeutic applications.",
     type: "award",
+    image: "/images/therapy/music-therapy-stall.jpg",
   },
   {
     year: "2024",
@@ -89,6 +96,7 @@ export const milestones: Milestone[] = [
     description:
       "Selected among top 10 national finalists at IIT Madras KRIA Innovation Awards for assistive technology work.",
     type: "award",
+    image: "/images/awards/kria-innovation-2024.jpg",
   },
   {
     year: "2024",
@@ -98,11 +106,12 @@ export const milestones: Milestone[] = [
     type: "career",
   },
   {
-    year: "2025",
-    title: "ATF Best Academic Initiative",
+    year: "2024",
+    title: "ATF Best Assistive Tech Academic Initiative",
     description:
       "Won Runner-Up at ATF Awards backed by Microsoft, Accenture & Shell for best assistive technology academic initiative.",
     type: "award",
+    image: "/images/awards/atf-finalist-2024.jpg",
   },
   {
     year: "2026",
@@ -110,5 +119,6 @@ export const milestones: Milestone[] = [
     description:
       "Nine interconnected assistive products. One shared intelligence layer. Building practical independence at community scale.",
     type: "vision",
+    image: "/images/ecosystem/covers/front-cover.png",
   },
 ];

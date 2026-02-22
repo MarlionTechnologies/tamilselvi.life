@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { mainNav } from "@/content/navigation";
 
@@ -9,6 +10,54 @@ interface MobileMenuProps {
 }
 
 export function MobileMenu({ open, onClose }: MobileMenuProps) {
+  const panelRef = useRef<HTMLDivElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+
+  // Body scroll lock + auto-focus
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+      // Focus close button after render
+      setTimeout(() => closeRef.current?.focus(), 50);
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  // Escape handler
+  useEffect(() => {
+    if (!open) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [open, onClose]);
+
+  // Focus trap
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key !== "Tab" || !panelRef.current) return;
+      const focusable = panelRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    },
+    []
+  );
+
   if (!open) return null;
 
   return (
@@ -17,14 +66,23 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
       <div
         className="absolute inset-0 bg-black/40 backdrop-blur-sm"
         onClick={onClose}
+        role="presentation"
       />
 
       {/* Menu panel */}
-      <div className="absolute inset-y-0 right-0 w-full max-w-sm bg-warmth-light shadow-xl">
+      <div
+        ref={panelRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigation menu"
+        onKeyDown={handleKeyDown}
+        className="absolute inset-y-0 right-0 w-full max-w-sm bg-warmth-light shadow-xl"
+      >
         <div className="flex flex-col h-full p-6">
           {/* Close button */}
           <div className="flex justify-end mb-8">
             <button
+              ref={closeRef}
               onClick={onClose}
               className="p-2 text-text-primary"
               aria-label="Close menu"
@@ -67,14 +125,6 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
 
           {/* Bottom section */}
           <div className="pt-6 border-t border-border space-y-4">
-            {/* Language */}
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-text-muted uppercase tracking-wider">Language:</span>
-              <button className="px-3 py-1 rounded-full bg-depth text-white text-sm font-medium">EN</button>
-              <button className="px-3 py-1 rounded-full text-text-secondary text-sm hover:bg-warmth">TA</button>
-              <button className="px-3 py-1 rounded-full text-text-secondary text-sm hover:bg-warmth">HI</button>
-            </div>
-
             {/* Connect CTA */}
             <Link
               href="/connect"

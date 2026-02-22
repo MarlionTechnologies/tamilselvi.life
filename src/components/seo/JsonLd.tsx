@@ -14,6 +14,7 @@ export function JsonLd({ data }: JsonLdProps) {
 export const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": "https://tamilselvi.life/#person",
   name: "Dr. D. Tamilselvi",
   jobTitle: "Professor of Information Technology",
   worksFor: {
@@ -29,6 +30,10 @@ export const personSchema = {
   },
   url: "https://tamilselvi.life",
   image: "https://tamilselvi.life/images/profile/dr-tamilselvi.jpg",
+  email: "dtamilselvi@tce.edu",
+  sameAs: [
+    "https://www.linkedin.com/in/tamilselvi-dhamotharan-7884323b/",
+  ],
   description:
     "Professor of IT at TCE Madurai, pioneering VR/AR assistive technology for children with autism. 23+ years of building bridges between technology and therapy.",
   knowsAbout: [
@@ -44,7 +49,7 @@ export const personSchema = {
     name: "Anna University",
   },
   award: [
-    "ATF Best Assistive Tech Academic Initiative 2025",
+    "ATF Best Assistive Tech Academic Initiative 2024",
     "IIT Madras KRIA Innovation Awards 2024 - Top 10",
     "Service to Humanity Award 2023",
   ],
@@ -53,9 +58,11 @@ export const personSchema = {
 export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": "https://tamilselvi.life/#website",
   name: "Dr. D. Tamilselvi — Assistive Technology for Every Child",
   url: "https://tamilselvi.life",
   description:
     "Portfolio website for Dr. D. Tamilselvi, Professor of IT at TCE Madurai, pioneering VR/AR assistive technology for children with autism.",
-  inLanguage: ["en", "ta", "hi"],
+  inLanguage: "en",
+  author: { "@id": "https://tamilselvi.life/#person" },
 };

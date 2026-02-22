@@ -11,6 +11,8 @@ export interface Product {
   description: string;
   color: string;
   icon: string;
+  heroImage: string;
+  heroPosition: string;
   highlight?: boolean;
   problem: string;
   insight: string;
@@ -27,8 +29,10 @@ export const products: Product[] = [
     domain: "Platform & Care Coordination",
     description:
       "RBAC-powered collaborative intelligence connecting parents, therapists, teachers, and doctors into one seamless care loop.",
-    color: "var(--caresync)",
+    color: "--caresync",
     icon: "heart",
+    heroImage: "/images/ecosystem/products/caresync/vision.jpg",
+    heroPosition: "center 5%",
     problem:
       "A child with autism may see a therapist on Monday, a teacher on Tuesday, and a doctor on Friday — none of whom know what the others observed. Parents carry the burden of being the sole thread connecting fragmented care.",
     insight:
@@ -50,8 +54,10 @@ export const products: Product[] = [
     domain: "Contextual Sensing for Care",
     description:
       "A camera system that comprehends, not just records. Guardian mode for elderly, Ally mode for neurodiverse individuals.",
-    color: "var(--smartcare)",
+    color: "--smartcare",
     icon: "eye",
+    heroImage: "/images/ecosystem/products/smart-care-vision/breakthrough.jpg",
+    heroPosition: "center 18%",
     problem:
       "Standard surveillance cameras see everything but understand nothing. They cannot tell if an elderly person has fallen or if a child with autism is in distress. Families hire human watchers — expensive, inconsistent, and not scalable.",
     insight:
@@ -62,7 +68,7 @@ export const products: Product[] = [
       { title: "Privacy-First Architecture", description: "Edge processing with no cloud dependency. What the camera sees stays in the home." },
       { title: "Caregiver Dashboard", description: "Real-time status and historical patterns accessible from anywhere via phone." },
     ],
-    stat: { value: "138M", label: "elderly Indians who live with limited or no daily assistance" },
+    stat: { value: "140M+", label: "elderly Indians who live with limited or no daily assistance" },
     humanStory:
       "Lakshmi lives alone at 78. Her son works in Chennai. One evening, she slips in the kitchen. Smart Care Vision detects the fall within seconds and sends an alert with a live view to her son's phone. Help arrives in 12 minutes. Without the system, she might have lain there all night.",
   },
@@ -73,8 +79,10 @@ export const products: Product[] = [
     domain: "Neurodiverse Interaction",
     description:
       "13 input modalities from sensory mats to EMG. The child's body IS the controller. No headsets required.",
-    color: "var(--neurosense)",
+    color: "--neurosense",
     icon: "brain",
+    heroImage: "/images/ecosystem/products/neurosense/sensory-mat.jpg",
+    heroPosition: "18% 42%",
     highlight: true,
     problem:
       "Traditional VR therapy requires children to wear headsets and hold controllers — devices that many children with autism, cerebral palsy, or sensory processing disorders cannot tolerate. The technology designed to help them becomes the first barrier.",
@@ -97,8 +105,10 @@ export const products: Product[] = [
     domain: "Hearing & Communication",
     description:
       "Semantic comprehension accelerator that works at the meaning layer, not just the sound layer. For 63 million Indians with hearing impairment.",
-    color: "var(--echo)",
+    color: "--echo",
     icon: "ear",
+    heroImage: "/images/ecosystem/products/echo-hear/semantic-noise.jpg",
+    heroPosition: "center 42%",
     problem:
       "Hearing aids amplify sound. Cochlear implants restore signal. But neither helps with comprehension — understanding spoken language in noisy classrooms, crowded markets, or family gatherings where multiple people speak at once.",
     insight:
@@ -109,7 +119,7 @@ export const products: Product[] = [
       { title: "Multi-Speaker Separation", description: "Distinguishes up to 4 simultaneous speakers in family or group settings." },
       { title: "Regional Language Support", description: "Trained on Indian English, Tamil, Hindi, and Telugu speech patterns." },
     ],
-    stat: { value: "63M", label: "Indians with hearing impairment — only 5% have access to hearing aids" },
+    stat: { value: "63M", label: "Indians with hearing impairment — only 0.5% have access to hearing aids" },
     humanStory:
       "Meena sits in the third row of her class. She has moderate hearing loss. Even with her hearing aid, the classroom is a blur of echoes. ECHO Hear isolates her teacher's voice and sends it directly to her aided ear. For the first time, she raises her hand to answer a question. She heard it clearly.",
   },
@@ -119,20 +129,22 @@ export const products: Product[] = [
     tagline: "Adaptive Communication Accelerator for the Deaf",
     domain: "Deaf Communication",
     description:
-      "The world's first ISL-to-Tamil speech system. Wrist-mounted sonar + AR glasses. 7x cheaper than alternatives.",
-    color: "var(--echo)",
+      "The world's first ISL-to-Tamil speech system. Wrist-mounted sonar + AR glasses. Dramatically more affordable than camera-based alternatives.",
+    color: "--echo",
     icon: "hand",
+    heroImage: "/images/ecosystem/products/echo-voice/two-way.jpg",
+    heroPosition: "center 40%",
     problem:
       "There are no certified ISL (Indian Sign Language) interpreters in most hospitals, banks, and government offices. Deaf individuals are forced to rely on family members — often children — to interpret in critical situations. Existing sign-to-speech systems only support ASL, not ISL.",
     insight:
-      "ECHO Voice is the world's first ISL-to-Tamil speech bridge. A wrist-mounted sonar sensor captures hand geometry in 3D. AR glasses overlay context. The system translates signs to spoken Tamil, Hindi, or English in real time — at 1/7th the cost of camera-based alternatives.",
+      "ECHO Voice is the world's first ISL-to-Tamil speech bridge. A wrist-mounted sonar sensor captures hand geometry in 3D. AR glasses overlay context. The system translates signs to spoken Tamil, Hindi, or English in real time — at a fraction of the cost of camera-based alternatives like BrightSign.",
     features: [
       { title: "ISL-to-Speech", description: "First-of-its-kind Indian Sign Language recognition that outputs spoken Tamil, Hindi, or English." },
       { title: "Wrist Sonar + AR", description: "Wrist-mounted sonar captures hand shapes without cameras. AR glasses add visual context and captions." },
-      { title: "7x Cost Reduction", description: "At Rs.15,000 vs Rs.1L+ for camera systems, ECHO Voice is accessible for community deployment." },
+      { title: "Radically Affordable", description: "At Rs.29,400 vs Rs.2.6L+ for camera-based systems like BrightSign, ECHO Voice is accessible for community deployment." },
       { title: "Offline Capable", description: "Core translation runs on-device — works in rural areas without internet." },
     ],
-    stat: { value: "1.8M", label: "deaf Indians who use ISL — with near-zero digital interpretation support" },
+    stat: { value: "6M+", label: "ISL users in India who lack accessible communication tools" },
     humanStory:
       "Ravi is deaf. He signs fluently. But at the hospital, no one understands ISL. His 12-year-old daughter interprets — explaining his chest pain, answering personal health questions. With ECHO Voice, Ravi speaks for himself. His signs become Tamil words. The doctor hears him clearly. His daughter can just be his daughter.",
   },
@@ -140,19 +152,21 @@ export const products: Product[] = [
     slug: "emboss",
     name: "EMBOSS",
     tagline: "Engrave, Don't Encode",
-    domain: "Tactile STEM Learning",
+    domain: "Tactile STEM Learning (Vision)",
     description:
-      "AI-powered tactile display that renders actual math shapes as raised surfaces. 50x cheaper than competitors.",
-    color: "var(--emboss)",
+      "AI-powered tactile display that renders actual math shapes as raised surfaces. Dramatically more affordable than imported alternatives.",
+    color: "--emboss",
     icon: "grid",
+    heroImage: "/images/ecosystem/products/emboss/hero.jpg",
+    heroPosition: "center 32%",
     problem:
-      "Blind students cannot learn geometry, graphs, or spatial math from Braille alone. Braille encodes math as text — but a triangle is not a word, it is a shape. Existing tactile displays cost Rs.5L+ and are unavailable in Indian schools.",
+      "Blind students cannot learn geometry, graphs, or spatial math from Braille alone. Braille encodes math as text — but a triangle is not a word, it is a shape. Existing tactile displays cost Rs.12-15L for imported pin-array systems and are unavailable in Indian schools.",
     insight:
-      "EMBOSS renders actual geometric shapes as raised surfaces on an affordable tactile display. A triangle feels like a triangle. A sine wave feels like a wave. The AI converts any digital math content into tactile form instantly — at 1/50th the cost of imported alternatives.",
+      "EMBOSS renders actual geometric shapes as raised surfaces on an affordable tactile display. A triangle feels like a triangle. A sine wave feels like a wave. The AI converts any digital math content into tactile form instantly — at a fraction of the cost of imported alternatives.",
     features: [
       { title: "Shape-First Learning", description: "Renders geometric shapes, graphs, and diagrams as raised tactile surfaces — not Braille descriptions." },
       { title: "AI Content Conversion", description: "Instantly converts digital math textbooks, PDFs, and worksheets into tactile format." },
-      { title: "50x Cost Reduction", description: "At Rs.10,000 vs Rs.5L+ for imported pin-array displays, EMBOSS is school-affordable." },
+      { title: "Radically Affordable", description: "At Rs.22,500 vs Rs.12-15L for imported pin-array displays, EMBOSS is school-affordable." },
       { title: "Curriculum Aligned", description: "Content mapped to CBSE and state board math syllabi from Class 6 to Class 12." },
     ],
     stat: { value: "5M", label: "blind Indians — most never access STEM education beyond basic Braille literacy" },
@@ -162,12 +176,14 @@ export const products: Product[] = [
   {
     slug: "sightline",
     name: "SIGHTLINE",
-    tagline: "AI Vision Companion",
+    tagline: "AI Vision Companion for the Visually Impaired",
     domain: "Vision Independence",
     description:
       "A robotic companion that navigates, sees, understands, and communicates. Built for Indian roads from the ground up.",
-    color: "var(--sightline)",
+    color: "--sightline",
     icon: "robot",
+    heroImage: "/images/ecosystem/products/sightline/hero.jpg",
+    heroPosition: "82% 18%",
     problem:
       "White canes detect obstacles at knee height. Guide dogs are expensive, require years of training, and are culturally unfamiliar in India. No existing navigation aid handles India's unpredictable roads — open manholes, uneven footpaths, stray animals, and missing curb cuts.",
     insight:
@@ -189,8 +205,10 @@ export const products: Product[] = [
     domain: "Mobility & ADAS",
     description:
       "ADAS-powered retrofit platform for autonomous indoor and outdoor mobility. Three tiers from Rs.30K to Rs.1.8L.",
-    color: "var(--wheelchair)",
+    color: "--wheelchair",
     icon: "wheelchair",
+    heroImage: "/images/ecosystem/products/smart-wheelchair/hero.jpg",
+    heroPosition: "center 52%",
     problem:
       "India has 7 million wheelchair users. Smart wheelchairs cost Rs.5-15L — affordable to almost none. Meanwhile, millions of manual wheelchairs sit unused or underused because they cannot navigate independently. The problem is not wheelchair design — it is intelligence retrofit.",
     insight:
@@ -208,21 +226,23 @@ export const products: Product[] = [
   {
     slug: "exoforce",
     name: "ExoForce",
-    tagline: "Restoring Mobility. Rebuilding Strength.",
+    tagline: "Restoring Mobility. Rebuilding Strength. Reclaiming Independence.",
     domain: "Wearable Rehabilitation",
     description:
-      "Intelligent wearable exoskeleton with hybrid actuation: assist, resist, and gamify rehabilitation at 1/10th the cost.",
-    color: "var(--exoforce)",
+      "Intelligent wearable exoskeleton with hybrid actuation: assist, resist, and gamify rehabilitation at a fraction of the cost of imports.",
+    color: "--exoforce",
     icon: "muscle",
+    heroImage: "/images/ecosystem/products/exoforce/hero.jpg",
+    heroPosition: "center 18%",
     problem:
-      "Post-stroke rehabilitation requires months of repetitive physical therapy. Most patients stop too early because sessions are expensive, boring, and require travel to specialized centers. Rehabilitation exoskeletons exist but cost Rs.20L+ — exclusively for elite hospitals.",
+      "Post-stroke rehabilitation requires months of repetitive physical therapy. Most patients stop too early because sessions are expensive, boring, and require travel to specialized centers. Rehabilitation exoskeletons exist but cost Rs.29L-1.65Cr for imported systems — exclusively for elite hospitals.",
     insight:
-      "ExoForce is a lightweight, affordable exoskeleton that brings rehabilitation home. It has three modes: Assist (helps weak limbs complete movements), Resist (provides progressive challenge as strength returns), and Game (turns exercises into interactive games for motivation). At Rs.2L — 1/10th the cost of hospital exoskeletons — it makes rehab accessible and engaging.",
+      "ExoForce is a lightweight, affordable exoskeleton that brings rehabilitation home. It has three modes: Assist (helps weak limbs complete movements), Resist (provides progressive challenge as strength returns), and Game (turns exercises into interactive games for motivation). From Rs.30K-60K — a fraction of the cost of imported exoskeletons — it makes rehab accessible and engaging.",
     features: [
       { title: "Hybrid Actuation", description: "Three modes — Assist, Resist, Game — that adapt from acute recovery to strength building to maintenance." },
       { title: "Home Rehabilitation", description: "Lightweight enough for daily home use. No hospital visits needed for routine therapy." },
       { title: "Gamified Recovery", description: "Interactive games that turn repetitive exercises into engaging activities — increasing compliance from 30% to 85%." },
-      { title: "1/10th Cost", description: "At Rs.2L vs Rs.20L+ for hospital systems, ExoForce brings exoskeleton therapy within reach." },
+      { title: "Radically Affordable", description: "From Rs.30K-60K vs Rs.29L-1.65Cr for imported systems, ExoForce brings exoskeleton therapy within reach." },
     ],
     stat: { value: "1.5M", label: "new stroke cases in India annually — 70% need rehabilitation they never complete" },
     humanStory:

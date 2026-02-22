@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { MapIndia } from "@/components/ui/MapIndia";
 import { schools, recognitions } from "@/content/schools";
 import { Button } from "@/components/ui/Button";
 
@@ -14,83 +15,72 @@ export default function ImpactPage() {
   return (
     <main>
       {/* Hero */}
-      <section className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 bg-gradient-to-b from-warmth-light to-white">
+      <section className="pt-28 pb-16 sm:pt-36 sm:pb-20 bg-warmth-light">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <ScrollReveal>
             <h1 className="text-text-primary mb-6">
-              This is what 10 years of listening looks like.
+              When technology walks into a child&apos;s world, everything changes.
             </h1>
-            <p className="text-lg sm:text-xl text-text-secondary leading-relaxed mx-auto max-w-2xl">
-              From Madurai to Pondicherry, from special schools to medical
-              institutions — technology meeting children in their own world.
+            <p className="text-lg text-text-secondary leading-relaxed mx-auto max-w-2xl">
+              8+ schools. 1000+ children. A decade of VR therapy sessions,
+              breakthroughs, and small moments that proved it works.
             </p>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* Map Section */}
+      {/* Schools Grid */}
       <section className="py-16 sm:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="text-center mb-12">
-              <p className="text-sm uppercase tracking-widest text-text-muted font-medium mb-4">
-                Where we have been
-              </p>
-              <h2 className="text-text-primary">
-                10+ institutions across South India
+              <h2 className="text-text-primary mb-4">
+                8+ Special Schools & Institutions
               </h2>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal delay={200}>
-            <MapIndia schools={schools} />
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Schools Grid */}
-      <section className="py-16 sm:py-24 bg-warmth-light">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal>
-            <div className="text-center mb-12">
-              <h2 className="text-text-primary mb-4">Schools & Institutions</h2>
-              <p className="text-text-secondary mx-auto">
+              <p className="text-text-secondary mx-auto max-w-lg">
                 Each visit is a conversation. Each child teaches us something new.
               </p>
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {schools.map((school, i) => (
               <ScrollReveal key={school.name} delay={i * 60}>
-                <div className="bg-white rounded-2xl p-6 shadow-[0_2px_12px_rgba(0,0,0,0.06)] h-full flex flex-col">
+                <div className="bg-warmth-light rounded-xl overflow-hidden h-full flex flex-col border border-transparent hover:border-border hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-all duration-300">
+                  {/* Image — every school now has one */}
                   {school.image && (
-                    <div
-                      className="w-full h-40 rounded-xl bg-cover bg-center mb-4 img-warm"
-                      style={{
-                        backgroundImage: `url(${school.image})`,
-                        backgroundColor: "var(--warmth)",
-                      }}
-                    />
-                  )}
-                  <div className="flex items-start gap-3 mb-3">
-                    <div
-                      className={`w-3 h-3 rounded-full mt-1.5 flex-shrink-0 ${
-                        school.highlight ? "bg-heart" : "bg-depth"
-                      }`}
-                    />
-                    <div>
-                      <h3 className="text-base font-semibold text-text-primary">
-                        {school.name}
-                      </h3>
-                      <p className="text-xs text-depth font-medium">
-                        {school.location}, {school.state}
-                      </p>
+                    <div className="relative h-44 overflow-hidden">
+                      <Image
+                        src={school.image}
+                        alt={school.name}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
                     </div>
+                  )}
+
+                  <div className="p-5 flex flex-col flex-1">
+                    <div className="flex items-start gap-2.5 mb-2">
+                      <div
+                        className="w-2.5 h-2.5 rounded-full mt-1.5 flex-shrink-0"
+                        style={{
+                          background: school.highlight ? "var(--heart)" : "var(--sky-dark)",
+                        }}
+                      />
+                      <div>
+                        <h3 className="text-base font-semibold text-text-primary leading-tight">
+                          {school.name}
+                        </h3>
+                        <p className="text-xs font-medium mt-0.5" style={{ color: "var(--depth)" }}>
+                          {school.location}, {school.state}
+                        </p>
+                      </div>
+                    </div>
+                    <p className="text-sm text-text-secondary leading-relaxed flex-1 mt-2">
+                      {school.description}
+                    </p>
                   </div>
-                  <p className="text-sm text-text-secondary leading-relaxed flex-1">
-                    {school.description}
-                  </p>
                 </div>
               </ScrollReveal>
             ))}
@@ -98,24 +88,27 @@ export default function ImpactPage() {
         </div>
       </section>
 
-      {/* The Letter */}
-      <section className="py-24 sm:py-32 bg-depth text-white">
+      {/* The Letter — warm charcoal (was bg-depth) */}
+      <section
+        className="py-20 sm:py-28"
+        style={{ background: "linear-gradient(180deg, #2E2723 0%, #252120 100%)" }}
+      >
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="text-center">
-              <p className="text-xs uppercase tracking-widest text-sky-light/60 mb-8">
-                Letter of Appreciation — Sathya Special School
-              </p>
-              <blockquote className="font-display text-xl sm:text-2xl lg:text-3xl leading-relaxed font-normal italic mb-8">
+              <blockquote
+                className="font-display text-xl sm:text-2xl lg:text-3xl leading-relaxed font-normal italic mb-8"
+                style={{ color: "#F5F0EB" }}
+              >
                 The VR therapy sessions have brought visible improvement in the
                 attention span and social interaction of our children. We are
                 grateful for Dr. Tamilselvi&apos;s dedication and the team&apos;s
                 consistent engagement with our school.
               </blockquote>
-              <p className="text-sky-light font-medium">
+              <p className="font-medium" style={{ color: "var(--sky)" }}>
                 Director, Sathya Special School
               </p>
-              <p className="text-white/40 text-sm mt-1">
+              <p className="text-sm mt-1" style={{ color: "#9A8E82" }}>
                 Pondicherry
               </p>
             </div>
@@ -124,13 +117,10 @@ export default function ImpactPage() {
       </section>
 
       {/* Recognition Grid */}
-      <section className="py-16 sm:py-24 bg-white">
+      <section className="py-16 sm:py-24 bg-warmth-light">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="text-center mb-12">
-              <p className="text-sm uppercase tracking-widest text-text-muted font-medium mb-4">
-                Who believes in this work
-              </p>
               <h2 className="text-text-primary">Recognition & Endorsements</h2>
             </div>
           </ScrollReveal>
@@ -138,16 +128,29 @@ export default function ImpactPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {recognitions.map((r, i) => (
               <ScrollReveal key={r.title} delay={i * 80}>
-                <div className="border border-border rounded-xl p-6 hover:shadow-[0_4px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300">
-                  <p className="text-xs text-depth font-semibold uppercase tracking-wider mb-2">
-                    {r.issuer} · {r.year}
-                  </p>
-                  <h3 className="text-base font-semibold text-text-primary mb-2">
-                    {r.title}
-                  </h3>
-                  <p className="text-sm text-text-secondary">
-                    {r.description}
-                  </p>
+                <div className="bg-white border border-border rounded-xl overflow-hidden hover:shadow-[0_4px_24px_rgba(0,0,0,0.06)] transition-shadow duration-300 h-full flex flex-col">
+                  {r.image && (
+                    <div className="relative h-40 overflow-hidden">
+                      <Image
+                        src={r.image}
+                        alt={r.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                    </div>
+                  )}
+                  <div className="p-5 flex flex-col flex-1">
+                    <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "var(--depth)" }}>
+                      {r.issuer} · {r.year}
+                    </p>
+                    <h3 className="text-base font-semibold text-text-primary mb-2">
+                      {r.title}
+                    </h3>
+                    <p className="text-sm text-text-secondary">
+                      {r.description}
+                    </p>
+                  </div>
                 </div>
               </ScrollReveal>
             ))}
@@ -155,8 +158,31 @@ export default function ImpactPage() {
 
           <ScrollReveal delay={400}>
             <div className="text-center mt-12">
+              <Button href="/gallery" variant="outline" size="lg">
+                View Photo Gallery
+              </Button>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Stakeholder CTAs */}
+      <section className="py-16 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <ScrollReveal>
+            <h2 className="text-text-primary mb-4">How can you be part of this?</h2>
+            <p className="text-text-secondary mb-8 max-w-xl mx-auto">
+              Whether you want to support this work, find therapy for a child, or understand the technology — there is a place for you.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
               <Button href="/connect/partner" variant="primary" size="lg">
                 Partner With Us
+              </Button>
+              <Button href="/connect/support" variant="secondary" size="lg">
+                Find Support for a Child
+              </Button>
+              <Button href="/work#vr-therapy" variant="secondary" size="lg">
+                See How It Works
               </Button>
             </div>
           </ScrollReveal>

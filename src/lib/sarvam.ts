@@ -8,7 +8,10 @@
  * - Translate (Mayura v1): api-subscription-key
  */
 
-const API_KEY = process.env.SARVAM_API_KEY!;
+const API_KEY = process.env.SARVAM_API_KEY;
+if (!API_KEY) {
+  console.warn("SARVAM_API_KEY not set — AI assistant features will be unavailable");
+}
 const BASE_URL = "https://api.sarvam.ai";
 
 // --- Chat Completions (Sarvam-M, FREE) ---
@@ -33,6 +36,9 @@ export interface ChatResponse {
 }
 
 export async function chat(messages: ChatMessage[]): Promise<ChatResponse> {
+  if (!API_KEY) {
+    throw new Error("Sarvam AI API key not configured");
+  }
   const res = await fetch(`${BASE_URL}/v1/chat/completions`, {
     method: "POST",
     headers: {
@@ -69,6 +75,9 @@ export async function speechToText(
   audioBuffer: Buffer,
   languageCode: string = "unknown"
 ): Promise<STTResponse> {
+  if (!API_KEY) {
+    throw new Error("Sarvam AI API key not configured");
+  }
   const formData = new FormData();
   const uint8 = new Uint8Array(audioBuffer);
   formData.append(
@@ -112,6 +121,9 @@ export async function textToSpeech(
   text: string,
   languageCode: string = "en-IN"
 ): Promise<TTSResponse> {
+  if (!API_KEY) {
+    throw new Error("Sarvam AI API key not configured");
+  }
   const speaker = VOICE_MAP[languageCode] || "anushka";
 
   const res = await fetch(`${BASE_URL}/text-to-speech`, {
@@ -152,6 +164,9 @@ export async function translate(
   sourceLang: string,
   targetLang: string
 ): Promise<TranslateResponse> {
+  if (!API_KEY) {
+    throw new Error("Sarvam AI API key not configured");
+  }
   const res = await fetch(`${BASE_URL}/translate`, {
     method: "POST",
     headers: {

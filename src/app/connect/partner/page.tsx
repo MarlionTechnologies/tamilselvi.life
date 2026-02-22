@@ -58,6 +58,16 @@ export default function PartnerPage() {
                     <li>Expansion to underserved communities in rural India</li>
                   </ul>
                 </div>
+                <div className="mt-6 p-4 bg-heart/5 rounded-xl border border-heart/10">
+                  <p className="text-sm text-text-secondary">
+                    <strong className="text-text-primary">Looking to sponsor a specific product?</strong>{" "}
+                    See our{" "}
+                    <a href="/connect/sponsor" className="text-heart hover:text-heart-dark font-medium underline underline-offset-2 transition-colors">
+                      sponsorship tiers
+                    </a>{" "}
+                    with Kickstarter-style benefits for every contribution level.
+                  </p>
+                </div>
               </div>
             </ScrollReveal>
             <ScrollReveal delay={200}>

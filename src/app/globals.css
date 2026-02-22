@@ -312,3 +312,108 @@ p {
     --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.2);
   }
 }
+
+/* ============================================
+   FOOTER — Warm charcoal ground
+   ============================================ */
+
+.footer-warm {
+  background: linear-gradient(180deg, #2E2723 0%, #252120 100%);
+}
+
+.footer-accent-line {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 5%,
+    var(--heart) 30%,
+    var(--heart-light) 50%,
+    var(--heart) 70%,
+    transparent 95%
+  );
+  opacity: 0.5;
+}
+
+.footer-monogram {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+  background: linear-gradient(135deg, var(--heart) 0%, var(--heart-dark) 100%);
+  box-shadow: 0 2px 8px rgba(196, 113, 78, 0.3);
+}
+
+.footer-text-bright { color: #F5F0EB; }
+.footer-text-mid    { color: #B5A99D; }
+.footer-text-soft   { color: #9A8E82; }
+.footer-text-muted  { color: #7A6E62; }
+
+.footer-heading {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--heart);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-heading-dash {
+  display: inline-block;
+  width: 1rem;
+  height: 1px;
+  background: var(--heart);
+  opacity: 0.6;
+}
+
+.footer-link {
+  font-size: 0.875rem;
+  color: #C4B8AA;
+  transition: color 200ms;
+}
+
+.footer-link:hover {
+  color: #F5F0EB;
+}
+
+.footer-bottom-border {
+  border-top: 1px solid rgba(196, 113, 78, 0.12);
+}
+
+.footer-lang-active {
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  background: rgba(196, 113, 78, 0.15);
+  color: var(--heart-light);
+}
+
+.footer-lang {
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  color: #7A6E62;
+  transition: color 200ms;
+  cursor: pointer;
+}
+
+.footer-lang:hover {
+  color: #C4B8AA;
+}
+
+/* ============================================
+   GALLERY — Exhibition cells
+   ============================================ */
+
+.gallery-cell {
+  opacity: 0;
+  animation: fadeUp var(--duration-slow) var(--ease-out) both;
+}

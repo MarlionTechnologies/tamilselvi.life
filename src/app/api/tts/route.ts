@@ -1,8 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { textToSpeech } from "@/lib/sarvam";
+import { rateLimit } from "@/lib/rate-limit";
 
 export async function POST(req: NextRequest) {
   try {
+    const forwarded = req.headers.get("x-forwarded-for");
+    const ip = forwarded?.split(",")[0]?.trim() || "anonymous";
+    if (!rateLimit(`tts:${ip}`, { limit: 10, windowMs: 60_000 })) {
+      return Response.json({ error: "Too many requests." }, { status: 429 });
+    }
+
     const { text, language } = (await req.json()) as {
       text: string;
       language?: string;
