@@ -1,6 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { AiOrbLoader } from "@/components/assistant/AiOrbLoader";
+import { PageTracker } from "@/components/analytics/PageTracker";
 import { SiteChrome } from "@/components/layout/SiteChrome";
 import { JsonLd, personSchema, websiteSchema } from "@/components/seo/JsonLd";
 
@@ -83,7 +87,18 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <SiteChrome>{children}</SiteChrome>
+        <SiteChrome
+          header={<Header />}
+          footer={
+            <>
+              <Footer />
+              <AiOrbLoader />
+              <PageTracker />
+            </>
+          }
+        >
+          {children}
+        </SiteChrome>
       </body>
     </html>
   );
