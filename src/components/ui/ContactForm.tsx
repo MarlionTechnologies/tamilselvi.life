@@ -18,6 +18,8 @@ interface ContactFormProps {
 
 export function ContactForm({ fields, audience }: ContactFormProps) {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
   if (submitted) {
     return (
@@ -39,9 +41,35 @@ export function ContactForm({ fields, audience }: ContactFormProps) {
 
   return (
     <form
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault();
-        setSubmitted(true);
+        setSubmitting(true);
+        setError("");
+
+        const formData = new FormData(e.currentTarget);
+        const data: Record<string, string> = {};
+        formData.forEach((value, key) => {
+          data[key] = value.toString();
+        });
+
+        try {
+          const res = await fetch("/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          });
+
+          if (!res.ok) {
+            const err = await res.json();
+            throw new Error(err.error || "Something went wrong");
+          }
+
+          setSubmitted(true);
+        } catch (err) {
+          setError(err instanceof Error ? err.message : "Failed to send. Please try again.");
+        } finally {
+          setSubmitting(false);
+        }
       }}
       className="space-y-5"
     >
@@ -90,11 +118,15 @@ export function ContactForm({ fields, audience }: ContactFormProps) {
           )}
         </div>
       ))}
+      {error && (
+        <p className="text-sm text-red-600 bg-red-50 px-4 py-2 rounded-lg">{error}</p>
+      )}
       <button
         type="submit"
-        className="w-full sm:w-auto px-8 py-3 bg-heart text-white text-sm font-medium rounded-full hover:bg-heart-dark transition-colors duration-200"
+        disabled={submitting}
+        className="w-full sm:w-auto px-8 py-3 bg-heart text-white text-sm font-medium rounded-full hover:bg-heart-dark transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        Send Message
+        {submitting ? "Sending..." : "Send Message"}
       </button>
     </form>
   );

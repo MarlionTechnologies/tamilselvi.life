@@ -62,22 +62,105 @@ export default async function ProductPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Description */}
+      {/* The Problem */}
       <section className="py-20 sm:py-28 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
+            <h2 className="text-2xl sm:text-3xl text-text-primary mb-6">The Problem</h2>
             <p className="text-text-secondary text-lg leading-relaxed">
-              {product.description}
+              {product.problem}
+            </p>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* The Insight */}
+      <section className="py-20 sm:py-28 bg-warmth-light">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal>
+            <h2 className="text-2xl sm:text-3xl text-text-primary mb-6">The Insight</h2>
+            <p className="text-text-secondary text-lg leading-relaxed">
+              {product.insight}
+            </p>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Stat Highlight */}
+      {product.stat && (
+        <section
+          className="py-16"
+          style={{ backgroundColor: `var(${product.color})` }}
+        >
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <ScrollReveal>
+              <p className="text-5xl sm:text-6xl font-bold text-white mb-2 font-display">
+                {product.stat.value}
+              </p>
+              <p className="text-white/85 text-lg max-w-lg mx-auto">
+                {product.stat.label}
+              </p>
+            </ScrollReveal>
+          </div>
+        </section>
+      )}
+
+      {/* Features */}
+      <section className="py-20 sm:py-28 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal>
+            <h2 className="text-2xl sm:text-3xl text-text-primary mb-12 text-center">
+              How It Works
+            </h2>
+          </ScrollReveal>
+          <div className="grid sm:grid-cols-2 gap-8">
+            {product.features.map((feature, i) => (
+              <ScrollReveal key={feature.title} delay={i * 100}>
+                <div className="bg-warmth-light rounded-2xl p-6 h-full">
+                  <div
+                    className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm font-bold mb-4"
+                    style={{ backgroundColor: `var(${product.color})` }}
+                  >
+                    {i + 1}
+                  </div>
+                  <h3 className="text-lg font-semibold text-text-primary mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-text-secondary text-sm leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Human Story */}
+      <section className="py-20 sm:py-28 bg-warmth-light">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal>
+            <h2 className="text-2xl sm:text-3xl text-text-primary mb-6">
+              A Day in Someone&apos;s Life
+            </h2>
+            <blockquote
+              className="text-text-secondary text-lg leading-relaxed italic border-l-4 pl-6"
+              style={{ borderColor: `var(${product.color})` }}
+            >
+              {product.humanStory}
+            </blockquote>
+            <p className="text-text-muted text-sm mt-4">
+              * Composite scenario based on real needs observed during fieldwork
             </p>
           </ScrollReveal>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-warmth-light">
+      <section className="py-16 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <ScrollReveal>
-            <h2 className="text-text-primary mb-4">
+            <h2 className="text-2xl sm:text-3xl text-text-primary mb-4">
               Interested in {product.name}?
             </h2>
             <p className="text-text-secondary mb-8 mx-auto">
@@ -97,7 +180,7 @@ export default async function ProductPage({ params }: Props) {
       </section>
 
       {/* Navigation */}
-      <section className="py-12 bg-white border-t border-border">
+      <section className="py-12 bg-warmth-light border-t border-border">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
             <a
