@@ -31,6 +31,7 @@ export function Header() {
     pathname === href || pathname.startsWith(href + "/");
 
   return (
+  <>
     <header
       className="fixed top-0 left-0 right-0 z-50 border-b transition-colors duration-300"
       style={{
@@ -201,8 +202,10 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      <MobileMenu open={mobileOpen} onClose={() => setMobileOpen(false)} />
     </header>
+
+    {/* Mobile Menu — outside header to avoid backdrop-filter containing block */}
+    <MobileMenu open={mobileOpen} onClose={() => setMobileOpen(false)} />
+  </>
   );
 }
