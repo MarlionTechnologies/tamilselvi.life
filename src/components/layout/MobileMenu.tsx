@@ -62,21 +62,15 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
 
   return (
     <div className="fixed inset-0 z-[60] lg:hidden">
-      {/* Backdrop */}
-      <div
-        className="absolute inset-0 bg-black/40 backdrop-blur-sm"
-        onClick={onClose}
-        role="presentation"
-      />
-
-      {/* Menu panel */}
+      {/* Menu panel — full screen, solid background */}
       <div
         ref={panelRef}
         role="dialog"
         aria-modal="true"
         aria-label="Navigation menu"
         onKeyDown={handleKeyDown}
-        className="absolute inset-y-0 right-0 w-full max-w-sm bg-warmth-light shadow-xl"
+        className="absolute inset-0 overflow-y-auto shadow-xl"
+        style={{ background: "#F5F0EB" }}
       >
         <div className="flex flex-col h-full p-6">
           {/* Close button */}
