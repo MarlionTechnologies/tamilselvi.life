@@ -1,0 +1,314 @@
+@import "tailwindcss";
+
+/* ============================================
+   DESIGN TOKENS — tamilselvi.life
+   "Warm with touches of blue. Aesthetic. Pleasing."
+   ============================================ */
+
+:root {
+  /* Primary Palette */
+  --warmth: #E8DDD3;
+  --warmth-light: #F5F0EB;
+  --warmth-dark: #D4C8BC;
+  --depth: #2C5F6E;
+  --depth-light: #3A7A8C;
+  --depth-dark: #1E4350;
+  --heart: #C4714E;
+  --heart-light: #D4896A;
+  --heart-dark: #A85C3E;
+  --sky: #A7C7D0;
+  --sky-light: #C4DDE4;
+  --sky-dark: #8BB3BE;
+
+  /* Text */
+  --text: #2D2D2D;
+  --text-light: #6B6B6B;
+  --text-muted: #9A9A9A;
+  --text-inverse: #FFFFFF;
+
+  /* Ecosystem Product Colors */
+  --neurosense: #2A8C8C;
+  --echo: #4BA8C7;
+  --emboss: #B87C4A;
+  --sightline: #D4A843;
+  --wheelchair: #C14B3A;
+  --exoforce: #D49E7A;
+  --caresync: #8B6B96;
+  --smartcare: #5C7A9E;
+
+  /* Surfaces */
+  --surface: #FFFFFF;
+  --surface-warm: var(--warmth-light);
+  --surface-card: #FFFFFF;
+  --surface-overlay: rgba(0, 0, 0, 0.5);
+
+  /* Borders & Shadows */
+  --border: #E5E0DB;
+  --border-light: #F0EBE6;
+  --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.06);
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.12);
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+
+  /* Spacing (8px base) */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+  --space-3xl: 8rem;
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 200ms;
+  --duration-normal: 400ms;
+  --duration-slow: 600ms;
+
+  /* Background & Foreground for Tailwind */
+  --background: var(--warmth-light);
+  --foreground: var(--text);
+}
+
+/* ============================================
+   TAILWIND THEME EXTENSION
+   ============================================ */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-warmth: var(--warmth);
+  --color-warmth-light: var(--warmth-light);
+  --color-warmth-dark: var(--warmth-dark);
+  --color-depth: var(--depth);
+  --color-depth-light: var(--depth-light);
+  --color-depth-dark: var(--depth-dark);
+  --color-heart: var(--heart);
+  --color-heart-light: var(--heart-light);
+  --color-heart-dark: var(--heart-dark);
+  --color-sky: var(--sky);
+  --color-sky-light: var(--sky-light);
+  --color-sky-dark: var(--sky-dark);
+  --color-surface: var(--surface);
+  --color-surface-warm: var(--surface-warm);
+  --color-text-primary: var(--text);
+  --color-text-secondary: var(--text-light);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --font-tamil: 'Noto Sans Tamil', sans-serif;
+  --font-hindi: 'Noto Sans Devanagari', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  line-height: 1.2;
+  color: var(--text);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 3vw, 3rem);
+  font-weight: 600;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  font-weight: 600;
+  font-family: var(--font-body);
+}
+
+p {
+  color: var(--text-light);
+  max-width: 720px;
+}
+
+/* ============================================
+   IMAGE TREATMENT — Warm unification filter
+   ============================================ */
+
+.img-warm {
+  filter: saturate(0.92) contrast(1.04) brightness(1.02);
+}
+
+/* ============================================
+   ANIMATIONS — "Gentle arrivals, not flashy entrances"
+   ============================================ */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes crossfade-1 {
+  0%, 28% { opacity: 1; }
+  33%, 95% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes crossfade-2 {
+  0%, 28% { opacity: 0; }
+  33%, 61% { opacity: 1; }
+  66%, 100% { opacity: 0; }
+}
+
+@keyframes crossfade-3 {
+  0%, 61% { opacity: 0; }
+  66%, 95% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.animate-fade-up {
+  animation: fadeUp var(--duration-slow) var(--ease-out) both;
+}
+
+.animate-breathe {
+  animation: breathe 3s ease-in-out infinite;
+}
+
+/* Staggered children animation */
+.stagger-children > * {
+  opacity: 0;
+  animation: fadeUp var(--duration-slow) var(--ease-out) both;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-children > *:nth-child(2) { animation-delay: 100ms; }
+.stagger-children > *:nth-child(3) { animation-delay: 200ms; }
+.stagger-children > *:nth-child(4) { animation-delay: 300ms; }
+.stagger-children > *:nth-child(5) { animation-delay: 400ms; }
+.stagger-children > *:nth-child(6) { animation-delay: 500ms; }
+
+/* Hero crossfade (22.5s total cycle = 3 images x 7.5s each) */
+.hero-crossfade-1 { animation: crossfade-1 22.5s infinite; }
+.hero-crossfade-2 { animation: crossfade-2 22.5s infinite; }
+.hero-crossfade-3 { animation: crossfade-3 22.5s infinite; }
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--warmth-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--sky-dark);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--depth);
+}
+
+/* ============================================
+   SELECTION
+   ============================================ */
+
+::selection {
+  background: var(--sky);
+  color: var(--depth-dark);
+}
+
+/* ============================================
+   FOCUS INDICATORS — Accessibility
+   ============================================ */
+
+:focus-visible {
+  outline: 3px solid var(--depth);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Remove outline for mouse clicks */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ============================================
+   HIGH CONTRAST
+   ============================================ */
+
+@media (prefers-contrast: high) {
+  :root {
+    --text: #000000;
+    --text-light: #333333;
+    --text-muted: #555555;
+    --border: #999999;
+    --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.15);
+    --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.2);
+  }
+}
