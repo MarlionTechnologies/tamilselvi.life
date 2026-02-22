@@ -51,21 +51,21 @@ const projects = [
     category: "VR Therapy Environment",
     description:
       "A calming forest setting for sensory regulation and attention training. Children navigate paths, identify animals, and respond to audio cues.",
-    image: "/images/projects/enchanting-forest.png",
+    image: "/images/projects/enchanting-forest.jpg",
   },
   {
     title: "Ride to Destiny",
     category: "VR Therapy Environment",
     description:
       "Interactive journey for decision-making and social cognition. Gamified challenges with cause-effect learning.",
-    image: "/images/projects/ride-to-destiny.png",
+    image: "/images/projects/ride-to-destiny.jpg",
   },
   {
     title: "Virtual Fishing",
     category: "VR Therapy Environment",
     description:
       "Motor coordination and patience-building. A low-pressure aquatic activity for children with autism.",
-    image: "/images/projects/virtual-fishing.png",
+    image: "/images/projects/virtual-fishing.jpg",
   },
   {
     title: "Kitchen Safety Simulation",

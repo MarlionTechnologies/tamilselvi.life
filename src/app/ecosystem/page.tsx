@@ -83,7 +83,7 @@ export default function EcosystemPage() {
                 <div className="relative w-full max-w-md">
                   <div className="relative h-[400px] sm:h-[480px] rounded-2xl overflow-hidden shadow-[0_16px_48px_rgba(0,0,0,0.15)]">
                     <Image
-                      src="/images/ecosystem/covers/front-cover.png"
+                      src="/images/ecosystem/covers/front-cover.jpg"
                       alt="Smart Assistive Technology Ecosystem — roadmap book cover"
                       fill
                       className="object-contain bg-warmth"

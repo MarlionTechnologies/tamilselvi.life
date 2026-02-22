@@ -119,6 +119,6 @@ export const milestones: Milestone[] = [
     description:
       "Nine interconnected assistive products. One shared intelligence layer. Building practical independence at community scale.",
     type: "vision",
-    image: "/images/ecosystem/covers/front-cover.png",
+    image: "/images/ecosystem/covers/front-cover.jpg",
   },
 ];
