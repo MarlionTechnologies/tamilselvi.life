@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { mainNav } from "@/content/navigation";
 
@@ -12,12 +13,17 @@ interface MobileMenuProps {
 export function MobileMenu({ open, onClose }: MobileMenuProps) {
   const panelRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  // Wait for client mount before using portal
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Body scroll lock + auto-focus
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
-      // Focus close button after render
       setTimeout(() => closeRef.current?.focus(), 50);
     } else {
       document.body.style.overflow = "";
@@ -58,21 +64,44 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
     []
   );
 
-  if (!open) return null;
+  if (!open || !mounted) return null;
 
-  return (
-    <div className="fixed inset-0 z-[60] lg:hidden">
-      {/* Menu panel — full screen, solid background */}
+  // Use portal to render directly into document.body
+  // All critical positioning uses inline styles — no Tailwind dependency for the overlay
+  return createPortal(
+    <div
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        width: "100vw",
+        height: "100dvh",
+        zIndex: 9999,
+      }}
+      className="lg:hidden"
+    >
       <div
         ref={panelRef}
         role="dialog"
         aria-modal="true"
         aria-label="Navigation menu"
         onKeyDown={handleKeyDown}
-        className="absolute inset-0 overflow-y-auto shadow-xl"
-        style={{ background: "#F5F0EB" }}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: "100%",
+          height: "100%",
+          background: "#F5F0EB",
+          overflowY: "auto",
+          WebkitOverflowScrolling: "touch",
+        }}
       >
-        <div className="flex flex-col h-full p-6">
+        <div style={{ display: "flex", flexDirection: "column", minHeight: "100%", padding: "1.5rem" }}>
           {/* Close button */}
           <div className="flex justify-end mb-8">
             <button
@@ -89,7 +118,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
           </div>
 
           {/* Nav items */}
-          <nav className="flex flex-col gap-2 flex-1">
+          <nav className="flex flex-col gap-2" style={{ flex: "1 1 auto" }}>
             {mainNav.map((item) => (
               <div key={item.href}>
                 <Link
@@ -119,7 +148,6 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
 
           {/* Bottom section */}
           <div className="pt-6 border-t border-border space-y-4">
-            {/* Connect CTA */}
             <Link
               href="/connect"
               onClick={onClose}
@@ -130,6 +158,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
