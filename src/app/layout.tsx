@@ -1,10 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { AiOrbLoader } from "@/components/assistant/AiOrbLoader";
-import { PageTracker } from "@/components/analytics/PageTracker";
+import { SiteChrome } from "@/components/layout/SiteChrome";
 import { JsonLd, personSchema, websiteSchema } from "@/components/seo/JsonLd";
 
 const playfair = Playfair_Display({
@@ -86,13 +83,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <Header />
-        <div id="main-content">
-          {children}
-        </div>
-        <Footer />
-        <AiOrbLoader />
-        <PageTracker />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );
